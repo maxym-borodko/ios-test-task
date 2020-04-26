@@ -53,13 +53,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dal-7X-L1f">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dal-7X-L1f">
                                                 <rect key="frame" x="239" y="0.0" width="127" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="127" id="aF3-6o-Dx2"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <state key="normal" title="sleep time"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="sleep time">
+                                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="onChangeSleepTime" destination="vgh-Px-5RI" eventType="touchUpInside" id="Cmt-A6-XcH"/>
                                                 </connections>
@@ -96,13 +98,15 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiZ-0R-MuZ">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EiZ-0R-MuZ">
                                                 <rect key="frame" x="239" y="0.0" width="127" height="64"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="127" id="XhU-Xm-u07"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <state key="normal" title="alarm time"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                <state key="normal" title="alarm time">
+                                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="onChangeAlarmTime" destination="vgh-Px-5RI" eventType="touchUpInside" id="bdF-Rs-kxw"/>
                                                 </connections>
@@ -141,13 +145,13 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="DtE-hs-Cah" firstAttribute="trailing" secondItem="Mai-Y7-RUU" secondAttribute="trailing" constant="20" id="1OH-jm-JET"/>
-                            <constraint firstItem="Mai-Y7-RUU" firstAttribute="leading" secondItem="DtE-hs-Cah" secondAttribute="leading" constant="20" id="DQO-St-gni"/>
-                            <constraint firstItem="Ynw-1Z-Fdo" firstAttribute="leading" secondItem="DtE-hs-Cah" secondAttribute="leading" constant="20" id="GND-P1-FOS"/>
+                            <constraint firstAttribute="trailing" secondItem="Mai-Y7-RUU" secondAttribute="trailing" constant="20" id="1OH-jm-JET"/>
+                            <constraint firstItem="Mai-Y7-RUU" firstAttribute="leading" secondItem="b2V-qx-I75" secondAttribute="leading" constant="20" id="DQO-St-gni"/>
+                            <constraint firstItem="Ynw-1Z-Fdo" firstAttribute="leading" secondItem="b2V-qx-I75" secondAttribute="leading" constant="20" id="GND-P1-FOS"/>
                             <constraint firstItem="Mai-Y7-RUU" firstAttribute="top" secondItem="Ynw-1Z-Fdo" secondAttribute="bottom" constant="60" id="Onl-S5-aZS"/>
                             <constraint firstItem="DtE-hs-Cah" firstAttribute="bottom" secondItem="Mai-Y7-RUU" secondAttribute="bottom" constant="34" id="SID-J5-jhT"/>
                             <constraint firstItem="wXx-9G-bqc" firstAttribute="top" secondItem="DtE-hs-Cah" secondAttribute="top" constant="88" id="UTD-Jg-Aql"/>
-                            <constraint firstItem="DtE-hs-Cah" firstAttribute="trailing" secondItem="Ynw-1Z-Fdo" secondAttribute="trailing" constant="20" id="faI-a9-FRg"/>
+                            <constraint firstAttribute="trailing" secondItem="Ynw-1Z-Fdo" secondAttribute="trailing" constant="20" id="faI-a9-FRg"/>
                             <constraint firstItem="wXx-9G-bqc" firstAttribute="centerX" secondItem="DtE-hs-Cah" secondAttribute="centerX" id="sEc-x8-1j1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="DtE-hs-Cah"/>

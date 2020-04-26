@@ -10,6 +10,9 @@
 		AB6C4154245608DC004084B9 /* nature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4152245608DB004084B9 /* nature.mp4 */; };
 		AB6C4155245608DC004084B9 /* alarm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4153245608DB004084B9 /* alarm.mp4 */; };
 		AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */; };
+		AB6C415E24562B5E004084B9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415D24562B5E004084B9 /* Observable.swift */; };
+		AB6C416124562BBB004084B9 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C416024562BBB004084B9 /* AlarmViewModel.swift */; };
+		AB6C416424563E65004084B9 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C416324563E65004084B9 /* UIAlertController+Extensions.swift */; };
 		AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D803E2455CFD200CB1248 /* AppDelegate.swift */; };
 		AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80402455CFD200CB1248 /* SceneDelegate.swift */; };
 		AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80422455CFD200CB1248 /* AlarmViewController.swift */; };
@@ -33,6 +36,9 @@
 		AB6C4152245608DB004084B9 /* nature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.mp4; sourceTree = "<group>"; };
 		AB6C4153245608DB004084B9 /* alarm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.mp4; sourceTree = "<group>"; };
 		AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableNotificationViewController.swift; sourceTree = "<group>"; };
+		AB6C415D24562B5E004084B9 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		AB6C416024562BBB004084B9 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
+		AB6C416324563E65004084B9 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
 		AB6D803B2455CFD200CB1248 /* test-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D803E2455CFD200CB1248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6D80402455CFD200CB1248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +79,31 @@
 			path = audio;
 			sourceTree = "<group>";
 		};
+		AB6C415C24562B41004084B9 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C415D24562B5E004084B9 /* Observable.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		AB6C415F24562B91004084B9 /* view-models */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C415C24562B41004084B9 /* components */,
+				AB6C416024562BBB004084B9 /* AlarmViewModel.swift */,
+			);
+			path = "view-models";
+			sourceTree = "<group>";
+		};
+		AB6C416224563E56004084B9 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C416324563E65004084B9 /* UIAlertController+Extensions.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		AB6D80322455CFD200CB1248 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +129,7 @@
 				AB6D80402455CFD200CB1248 /* SceneDelegate.swift */,
 				AB6D80622455D80E00CB1248 /* resources */,
 				AB6D80612455D80200CB1248 /* views */,
+				AB6C415F24562B91004084B9 /* view-models */,
 				AB6D80472455CFD300CB1248 /* Assets.xcassets */,
 				AB6D804C2455CFD300CB1248 /* Info.plist */,
 			);
@@ -116,6 +148,7 @@
 		AB6D80612455D80200CB1248 /* views */ = {
 			isa = PBXGroup;
 			children = (
+				AB6C416224563E56004084B9 /* extensions */,
 				AB6D80422455CFD200CB1248 /* AlarmViewController.swift */,
 				AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */,
 			);
@@ -246,6 +279,9 @@
 				AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */,
 				AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */,
 				AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */,
+				AB6C415E24562B5E004084B9 /* Observable.swift in Sources */,
+				AB6C416424563E65004084B9 /* UIAlertController+Extensions.swift in Sources */,
+				AB6C416124562BBB004084B9 /* AlarmViewModel.swift in Sources */,
 				AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

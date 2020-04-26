@@ -15,23 +15,59 @@ class AlarmViewController: UIViewController {
     @IBOutlet var alarmButton: UIButton!
     @IBOutlet var changeStateButton: UIButton!
     
+    var viewModel: AlarmViewModel = AlarmViewModel()
+    
+    
     // MARK: - UIViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        viewModel.state.bind({ [unowned self] state in
+            self.stateLabel.text = state
+        })
+        
+        viewModel.sleepTime.bind({ [unowned self] sleepTime in
+            self.sleepTimeButton.setTitle(sleepTime, for: .normal)
+        })
+        
+        viewModel.alarmTime.bind({ [unowned self] alarmTime in
+            self.alarmButton.setTitle(alarmTime, for: .normal)
+        })
+        
+        viewModel.actionTitle.bind({ [unowned self] action in
+            self.changeStateButton.setTitle(action, for: .normal)
+        })
     }
     
     // MARK: - Actions
     @IBAction func onChangeSleepTime() {
-        
+        presentSleepTimes()
     }
     
     @IBAction func onChangeAlarmTime() {
-        
+        presentAlarm()
     }
     
     @IBAction func onChangeState() {
+        viewModel.changeState()
+    }
+    
+    //
+    private func presentSleepTimes() {
+        let sheet = UIAlertController.sleepTimeSheetControllerWith(sleepTimes: [])
+        { [unowned self] (index) in
+            self.viewModel.setSleepTimeAt(index: index)
+        }
         
+        present(sheet, animated: true)
+    }
+    
+    private func presentAlarm() {
+        let datePickerController = UIAlertController.datePickerViewController
+        { [unowned self] (date) in
+            self.viewModel.setAlarm(dateTime: date)
+        }
+        
+        self.present(datePickerController, animated: true, completion: nil)
     }
 }
-
