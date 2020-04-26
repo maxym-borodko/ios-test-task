@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB6C4154245608DC004084B9 /* nature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4152245608DB004084B9 /* nature.mp4 */; };
+		AB6C4155245608DC004084B9 /* alarm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4153245608DB004084B9 /* alarm.mp4 */; };
+		AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */; };
 		AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D803E2455CFD200CB1248 /* AppDelegate.swift */; };
 		AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80402455CFD200CB1248 /* SceneDelegate.swift */; };
 		AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80422455CFD200CB1248 /* AlarmViewController.swift */; };
@@ -14,7 +17,6 @@
 		AB6D80482455CFD300CB1248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB6D80472455CFD300CB1248 /* Assets.xcassets */; };
 		AB6D804B2455CFD300CB1248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB6D80492455CFD300CB1248 /* LaunchScreen.storyboard */; };
 		AB6D80562455CFD300CB1248 /* test_ios_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80552455CFD300CB1248 /* test_ios_appTests.swift */; };
-		AB6D80672455D88E00CB1248 /* AlarmTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80662455D88E00CB1248 /* AlarmTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB6C4152245608DB004084B9 /* nature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.mp4; sourceTree = "<group>"; };
+		AB6C4153245608DB004084B9 /* alarm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.mp4; sourceTree = "<group>"; };
+		AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableNotificationViewController.swift; sourceTree = "<group>"; };
 		AB6D803B2455CFD200CB1248 /* test-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D803E2455CFD200CB1248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6D80402455CFD200CB1248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +44,6 @@
 		AB6D80512455CFD300CB1248 /* test-ios-appTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "test-ios-appTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D80552455CFD300CB1248 /* test_ios_appTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test_ios_appTests.swift; sourceTree = "<group>"; };
 		AB6D80572455CFD300CB1248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB6D80662455D88E00CB1248 /* AlarmTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB6C4151245608C8004084B9 /* audio */ = {
+			isa = PBXGroup;
+			children = (
+				AB6C4153245608DB004084B9 /* alarm.mp4 */,
+				AB6C4152245608DB004084B9 /* nature.mp4 */,
+			);
+			path = audio;
+			sourceTree = "<group>";
+		};
 		AB6D80322455CFD200CB1248 = {
 			isa = PBXGroup;
 			children = (
@@ -104,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				AB6D80422455CFD200CB1248 /* AlarmViewController.swift */,
-				AB6D80662455D88E00CB1248 /* AlarmTableViewCell.swift */,
+				AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -112,6 +125,7 @@
 		AB6D80622455D80E00CB1248 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				AB6C4151245608C8004084B9 /* audio */,
 				AB6D80632455D81D00CB1248 /* storyboards */,
 			);
 			path = resources;
@@ -207,7 +221,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB6C4154245608DC004084B9 /* nature.mp4 in Resources */,
 				AB6D804B2455CFD300CB1248 /* LaunchScreen.storyboard in Resources */,
+				AB6C4155245608DC004084B9 /* alarm.mp4 in Resources */,
 				AB6D80482455CFD300CB1248 /* Assets.xcassets in Resources */,
 				AB6D80462455CFD200CB1248 /* Main.storyboard in Resources */,
 			);
@@ -227,10 +243,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB6D80672455D88E00CB1248 /* AlarmTableViewCell.swift in Sources */,
 				AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */,
 				AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */,
 				AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */,
+				AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,12 +407,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4UYFAHCBGE;
 				INFOPLIST_FILE = "test-ios-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test-app.test-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test-ios-app.test-ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,12 +426,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4UYFAHCBGE;
 				INFOPLIST_FILE = "test-ios-app/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test-app.test-ios-app";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.test-ios-app.test-ios-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

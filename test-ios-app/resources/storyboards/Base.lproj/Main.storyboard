@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vgh-Px-5RI">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
@@ -162,6 +162,57 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UVR-9h-EWU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
+        </scene>
+        <!--Enable Notification View Controller-->
+        <scene sceneID="hD1-d8-XkP">
+            <objects>
+                <viewController storyboardIdentifier="EnableNotificationViewController" id="Mpm-AU-zRY" customClass="EnableNotificationViewController" customModule="test_ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pg7-fm-joF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To continue work with the application, please, turn on Notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-Ie-AY6">
+                                <rect key="frame" x="48" y="432.5" width="319" height="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3E-9c-nDc">
+                                <rect key="frame" x="20" y="516" width="374" height="64"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="8ve-nq-faN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Open Settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onChangeState" destination="vgh-Px-5RI" eventType="touchUpInside" id="xlr-Bs-ORh"/>
+                                    <action selector="onOpenSettings" destination="Mpm-AU-zRY" eventType="touchUpInside" id="jJ3-Ym-arr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rHx-gF-8fy" firstAttribute="trailing" secondItem="q3E-9c-nDc" secondAttribute="trailing" constant="20" id="FQi-cQ-Q5l"/>
+                            <constraint firstItem="q3E-9c-nDc" firstAttribute="top" secondItem="ZKI-Ie-AY6" secondAttribute="bottom" constant="42.5" id="UJY-Q5-PXE"/>
+                            <constraint firstItem="ZKI-Ie-AY6" firstAttribute="leading" secondItem="rHx-gF-8fy" secondAttribute="leading" constant="48" id="V42-9q-DGD"/>
+                            <constraint firstItem="ZKI-Ie-AY6" firstAttribute="centerY" secondItem="rHx-gF-8fy" secondAttribute="centerY" id="krS-XN-aaf"/>
+                            <constraint firstItem="q3E-9c-nDc" firstAttribute="leading" secondItem="rHx-gF-8fy" secondAttribute="leading" constant="20" id="q1C-bw-Av7"/>
+                            <constraint firstItem="rHx-gF-8fy" firstAttribute="trailing" secondItem="ZKI-Ie-AY6" secondAttribute="trailing" constant="47" id="yCe-iM-103"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rHx-gF-8fy"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FIM-87-4d0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="50.724637681159422" y="1044.6428571428571"/>
         </scene>
     </scenes>
 </document>
