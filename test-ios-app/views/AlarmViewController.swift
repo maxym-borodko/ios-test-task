@@ -42,6 +42,11 @@ class AlarmViewController: UIViewController {
         viewModel.alarmEvent = { [unowned self] in
             self.presentAlarmWentOff()
         }
+        
+        viewModel.canChangeTimeValues.bind({ [unowned self] (canChangeTimeValues) in
+            self.sleepTimeButton.isEnabled = canChangeTimeValues
+            self.alarmButton.isEnabled = canChangeTimeValues
+        })
     }
     
     // MARK: - Actions

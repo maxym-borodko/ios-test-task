@@ -75,10 +75,13 @@ class AudioSessionModel {
                 previousState = prepareForInterruption?()
             }
         case .ended:
-            // guard let optionsValue = userInfo[AVAudioSessionInterruptionOptionKey] as? UInt else { return }
-            // let options = AVAudioSession.InterruptionOptions(rawValue: optionsValue)
-            // options.contains() .shouldResume
-            // "Apps that don’t require user input to begin audio playback (such as games) can ignore this flag and resume playback when an interruption ends."
+           
+            // The app doesn't check for '.shouldResume' in userInfo[AVAudioSessionInterruptionOptionKey] because
+            // I think that the state has to restore automatically.
+            //
+            // Also, Apple advices:
+            // "Apps that don’t require user input to begin audio playback (such as games) can ignore this
+            // flag and resume playback when an interruption ends."
             
             if let state = previousState {
                 restoreAfterInterruption?(state)

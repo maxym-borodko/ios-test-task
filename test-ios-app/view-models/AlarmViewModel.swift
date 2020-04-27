@@ -18,6 +18,7 @@ class AlarmViewModel {
     private(set) var sleepTime: Observable<String> = Observable<String>("")
     private(set) var alarmTime: Observable<String> = Observable<String>("")
     private(set) var actionTitle: Observable<String> = Observable<String>("")
+    private(set) var canChangeTimeValues: Observable<Bool> = Observable<Bool>(true)
     
     var alarmEvent: AlarmEventCompletion? = nil
     
@@ -46,6 +47,7 @@ class AlarmViewModel {
             
             self.state.value = state.toString()
             self.actionTitle.value = action
+            self.canChangeTimeValues.value = state == .idle
         })
         
         setSleepTimeAt(index: 0)
