@@ -9,15 +9,15 @@
 import Foundation
 import UIKit
 
-
 typealias AlarmCompletion = () -> Void
 
 class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
     
+    //
     var alarm: AlarmCompletion?
-    
     weak var errorHandler: ErrorHandler?
     
+    //
     private var notificationCenter: UNUserNotificationCenter
     
     // MARK: - Initializers
@@ -50,12 +50,6 @@ class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
     }
     
     // MARK: - UNUserNotificationCenterDelegate
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
-        // handle
-    }
-    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

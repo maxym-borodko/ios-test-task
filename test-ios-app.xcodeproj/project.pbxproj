@@ -19,6 +19,7 @@
 		AB6C417024564928004084B9 /* SleepTimeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C416F24564928004084B9 /* SleepTimeModel.swift */; };
 		AB6C417324564BA6004084B9 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C417224564BA6004084B9 /* FileManager+Extensions.swift */; };
 		AB6C4178245744AE004084B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C4177245744AE004084B9 /* ErrorHandler.swift */; };
+		AB6C417A24576E38004084B9 /* AudioSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C417924576E37004084B9 /* AudioSessionModel.swift */; };
 		AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D803E2455CFD200CB1248 /* AppDelegate.swift */; };
 		AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80402455CFD200CB1248 /* SceneDelegate.swift */; };
 		AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80422455CFD200CB1248 /* AlarmViewController.swift */; };
@@ -51,6 +52,7 @@
 		AB6C416F24564928004084B9 /* SleepTimeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SleepTimeModel.swift; sourceTree = "<group>"; };
 		AB6C417224564BA6004084B9 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		AB6C4177245744AE004084B9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		AB6C417924576E37004084B9 /* AudioSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSessionModel.swift; sourceTree = "<group>"; };
 		AB6D803B2455CFD200CB1248 /* test-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D803E2455CFD200CB1248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6D80402455CFD200CB1248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				AB6C417124564B97004084B9 /* extensions */,
+				AB6C417924576E37004084B9 /* AudioSessionModel.swift */,
 				AB6C416B245648D2004084B9 /* NotificationsModel.swift */,
 				AB6C416D2456490D004084B9 /* RecordAudioModel.swift */,
 				AB6C416F24564928004084B9 /* SleepTimeModel.swift */,
@@ -321,6 +324,7 @@
 				AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */,
 				AB6C416E2456490D004084B9 /* RecordAudioModel.swift in Sources */,
 				AB6C416924564250004084B9 /* AlarmModel.swift in Sources */,
+				AB6C417A24576E38004084B9 /* AudioSessionModel.swift in Sources */,
 				AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */,
 				AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */,
 				AB6C4178245744AE004084B9 /* ErrorHandler.swift in Sources */,

@@ -76,7 +76,6 @@ class AlarmViewModel {
         }
     }
 }
-
     
 extension SleepTime {
     func stringRepresantative() -> String {

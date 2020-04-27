@@ -15,11 +15,13 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     
     //
     weak var errorHandler: ErrorHandler?
+    var isRecording: Observable<Bool> = Observable<Bool>(false)
+    var isActive: Observable<Bool> = Observable<Bool>(false)
     
     private(set) var nameSuffix: String
     private(set) var directory: URL
     
-    private var recordingSession: AVAudioSession?
+    private var audioSessionModel: AudioSessionModel?
     private var recorder: AVAudioRecorder?
     private var sessionsId: Int = 1
     
@@ -33,23 +35,46 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     
     // MARK: - Public methods
     func startRecording() {
-        let audioFilename = directory.appendingPathComponent(sessionsId.description + nameSuffix + "." + RecordAudioModel.audioFormatString)
-        
-        recordingSession = AVAudioSession.sharedInstance()
-        
         do {
-            recorder = try AVAudioRecorder(url: audioFilename,
-                                           settings: [
-                                            AVFormatIDKey: Int(kAudioFormatAppleLossless),
-                                            AVSampleRateKey: 44100,
-                                            AVNumberOfChannelsKey: 2,
-                                            AVEncoderBitRateKey: 320000,
-                                            AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue])
+            if audioSessionModel == nil {
+                audioSessionModel = AudioSessionModel()
+                isActive.value = true
+                try audioSessionModel?.setRecordCategory()
+                
+                audioSessionModel?.prepareForInterruption = { [unowned self] in
+                    let state: AudioSessionModel.State = self.isRecording.value ? .active : .paused
+                    self.pauseRecording()
+                    
+                    return state
+                }
+                
+                audioSessionModel?.restoreAfterInterruption = { [unowned self] (state) in
+                    switch state {
+                    case .active:
+                        self.startRecording()
+                    default:
+                        self.pauseRecording()
+                    }
+                }
+            }
             
-            recorder?.delegate = self
+            if recorder == nil {
+                
+                let pathComponent = sessionsId.description + nameSuffix + "." + RecordAudioModel.audioFormatString
+                let audioFilename = directory.appendingPathComponent(pathComponent)
+                recorder = try AVAudioRecorder(url: audioFilename,
+                                               settings: [
+                                                AVFormatIDKey: Int(kAudioFormatAppleLossless),
+                                                AVSampleRateKey: 44100,
+                                                AVNumberOfChannelsKey: 2,
+                                                AVEncoderBitRateKey: 320000,
+                                                AVEncoderAudioQualityKey: AVAudioQuality.max.rawValue])
+                
+                recorder?.delegate = self
+            }
             
-            try recordingSession?.setCategory(.record)
             recorder?.record()
+            isRecording.value = true
         }
         catch {
             // The issues here usually occurs because of some problems with audio configs.
@@ -60,19 +85,25 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     
     func pauseRecording() {
         recorder?.pause()
+        isRecording.value = false
     }
     
     func stopRecording() {
         do {
-            try recordingSession?.setCategory(.playback)
+            try audioSessionModel?.setPlaybackCategory()
         }
         catch {
             errorHandler?.handle(error: error)
         }
         
         recorder?.stop()
+        isRecording.value = false
+        
         recorder = nil
-        recordingSession = nil
+        
+        audioSessionModel = nil
+        isActive.value = false
+        isRecording.value = false
     }
     
     // MARK: - AVAudioRecorderDelegate
@@ -85,5 +116,7 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
         if let err = error {
             errorHandler?.handle(error: err)
         }
+        
+        stopRecording()
     }
 }

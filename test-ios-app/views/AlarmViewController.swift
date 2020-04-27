@@ -10,13 +10,14 @@ import UIKit
 
 class AlarmViewController: UIViewController {
     
+    //
     @IBOutlet var stateLabel: UILabel!
     @IBOutlet var sleepTimeButton: UIButton!
     @IBOutlet var alarmButton: UIButton!
     @IBOutlet var changeStateButton: UIButton!
     
+    //
     var viewModel: AlarmViewModel = AlarmViewModel()
-    
     
     // MARK: - UIViewController lifecycle
     override func viewDidLoad() {
@@ -56,7 +57,7 @@ class AlarmViewController: UIViewController {
         viewModel.changeState()
     }
     
-    //
+    // MARK: - Private
     private func presentSleepTimes() {
         let sheet = UIAlertController.sleepTimeSheetControllerWith(sleepTimes: viewModel.sleepTimeValues)
         { [unowned self] (index) in

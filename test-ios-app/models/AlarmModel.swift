@@ -28,32 +28,24 @@ class AlarmModel: NSObject {
     private(set) var state: Observable<State> = Observable<State>(.idle)
     
     private var notificationsModel: NotificationsModel
-    private var recordAudioModel: RecordAudioModel
     private var sleepTimeModel: SleepTimeModel
+    private var recordAudioModel: RecordAudioModel
     
     //
     override init() {
         //
         notificationsModel = NotificationsModel()
-        recordAudioModel = RecordAudioModel(nameSuffix: AlarmModel.recordsSuffix,
-                                            directory: FileManager.default.documentsDirectory())
         sleepTimeModel = SleepTimeModel(audioPath: Bundle.main.path(forResource: AlarmModel.soundFile.name,
                                                                     ofType: AlarmModel.soundFile.format)!)
+        recordAudioModel = RecordAudioModel(nameSuffix: AlarmModel.recordsSuffix,
+                                            directory: FileManager.default.documentsDirectory())
         alarmDateTime = Calendar.current.date(byAdding: .hour,
                                               value: AlarmModel.hoursOffset,
                                               to: Date())!
         
         super.init()
-        
-        notificationsModel.alarm = { [unowned self] in
-            self.state.value = .alarm
-            self.recordAudioModel.stopRecording()
-        }
-        
-        //
-        notificationsModel.errorHandler = self
-        recordAudioModel.errorHandler = self
-        sleepTimeModel.errorHandler = self
+
+        setupModels()
     }
     
     //
@@ -64,18 +56,14 @@ class AlarmModel: NSObject {
     func start() {
         switch state.value {
         case .idle, .alarm:
-            state.value = .playing
             notificationsModel.registerAlarmWith(alarmDateTime: alarmDateTime)
             sleepTimeModel.runModelWith(sleepTime: sleepTime)
             { [unowned self] in
-                self.state.value = .recording
                 self.recordAudioModel.startRecording()
             }
         case .recordingPaused:
-            state.value = .recording
             recordAudioModel.startRecording()
         case .sleepPaused:
-            state.value = .playing
             sleepTimeModel.playAudio()
         default:
             break
@@ -85,19 +73,63 @@ class AlarmModel: NSObject {
     func stop() {
         switch self.state.value {
         case .playing:
-            state.value = .sleepPaused
             sleepTimeModel.pauseAudio()
         case .recording:
-            state.value = .recordingPaused
             recordAudioModel.pauseRecording()
         default:
             break
+        }
+    }
+    
+    //
+    private func setupModels() {
+        
+        // Error handler
+        notificationsModel.errorHandler = self
+        recordAudioModel.errorHandler = self
+        sleepTimeModel.errorHandler = self
+        
+        //
+        notificationsModel.alarm = { [unowned self] in
+            self.recordAudioModel.stopRecording()
+            self.state.value = .alarm
+        }
+        
+        //
+        sleepTimeModel.isActive.bind { [unowned self] (value) in
+            self.updateState()
+        }
+        
+        sleepTimeModel.isPlaying.bind { [unowned self] (value) in
+            self.updateState()
+        }
+        
+        //
+        recordAudioModel.isActive.bind { [unowned self] (value) in
+            self.updateState()
+        }
+        
+        recordAudioModel.isRecording.bind { [unowned self] (value) in
+            self.updateState()
+        }
+    }
+    
+    private func updateState() {
+        if sleepTimeModel.isActive.value {
+            state.value = sleepTimeModel.isPlaying.value ? AlarmModel.State.playing : AlarmModel.State.sleepPaused
+        }
+        else if recordAudioModel.isActive.value {
+            state.value = recordAudioModel.isRecording.value ? AlarmModel.State.recording : AlarmModel.State.recordingPaused
+        }
+        else {
+            state.value = .idle
         }
     }
 }
 
 extension AlarmModel: ErrorHandler {
     func handle(error: Error) {
+        
         // Error handlind strategy of the app needs to be developed with a product manager.
         // Usually, different kinds of alerts, messages, tips or loggers are used in this situations.
         //

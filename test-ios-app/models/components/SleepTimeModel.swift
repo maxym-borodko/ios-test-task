@@ -16,17 +16,18 @@ class SleepTimeModel {
     
     //
     weak var errorHandler: ErrorHandler?
+    private(set) var isPlaying: Observable<Bool> = Observable<Bool>(false)
+    private(set) var isActive: Observable<Bool> = Observable<Bool>(false)
     
     //
     private var timer: Timer?
     private var player: AVAudioPlayer?
-    private var audioSession: AVAudioSession?
+    private var audioSessionModel: AudioSessionModel?
     
     private var audioPath: String
     
     init(audioPath: String) {
         self.audioPath = audioPath
-        self.audioSession = AVAudioSession.sharedInstance()
     }
     
     // MARK: - Public methods
@@ -49,18 +50,44 @@ class SleepTimeModel {
     
     func playAudio() {
         do {
+            //
+            if audioSessionModel == nil {
+                audioSessionModel = AudioSessionModel()
+                audioSessionModel?.prepareForInterruption = { [unowned self] in
+                    let state: AudioSessionModel.State = self.isPlaying.value ? .active : .paused
+                    self.pauseAudio()
+                    
+                    return state
+                }
+                
+                audioSessionModel?.restoreAfterInterruption = { [unowned self] (state) in
+                    switch state {
+                    case .active:
+                        self.playAudio()
+                    default:
+                        self.pauseAudio()
+                    }
+                }
+                
+                isActive.value = true
+            }
+            //
             if player == nil {
                 let url = URL(fileURLWithPath: audioPath)
                 player = try AVAudioPlayer(contentsOf: url)
+                
+                player?.numberOfLoops = SleepTimeModel.infiniteNumberOfLoops
+                player?.prepareToPlay()
+
+                try audioSessionModel?.setActive()
+                try audioSessionModel?.setPlaybackCategory()
             }
             
-            player?.numberOfLoops = SleepTimeModel.infiniteNumberOfLoops
-            player?.prepareToPlay()
-            
-            try audioSession?.setCategory(.playback)
             player?.play()
+            isPlaying.value = true
         }
         catch {
+            
             // usually, errors in this case are related with broken or missed
             // resources or some OS issues, that can't be fixed with user's help.
             // We need to integrate an additional logger to track such issues
@@ -70,11 +97,15 @@ class SleepTimeModel {
     
     func pauseAudio() {
         player?.pause()
+        isPlaying.value = false
     }
     
     // MARK: - Private methods
     private func stopAudio() {
         player?.stop()
+        isPlaying.value = false
         player = nil
+        audioSessionModel = nil
+        isActive.value = false
     }
 }
