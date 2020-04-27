@@ -9,16 +9,16 @@
 import Foundation
 
 
-typealias SleepTime = Int
+typealias SleepTime = Double
 
 class AlarmViewModel {
 
-    private(set) var state: Observable<String> = Observable<String>("Idle") // get from model
-    private(set) var sleepTime: Observable<String> = Observable<String>("20 mins") // get from model
-    private(set) var alarmTime: Observable<String> = Observable<String>("8:30 PM") // get from model
-    private(set) var actionTitle: Observable<String> = Observable<String>("Play") // get from model
+    private(set) var state: Observable<String> = Observable<String>("") // get from model
+    private(set) var sleepTime: Observable<String> = Observable<String>("") // get from model
+    private(set) var alarmTime: Observable<String> = Observable<String>("") // get from model
+    private(set) var actionTitle: Observable<String> = Observable<String>("") // get from model
     
-    private(set) var sleepTimeValues: [SleepTime] = [0, 1, 5, 10, 15, 20]
+    private(set) var sleepTimeValues: [SleepTime] = [0, 0.1, 1, 5, 10, 15, 20]
     
     private var dateFormatter = DateFormatter()
     private var model: AlarmModel = AlarmModel()
