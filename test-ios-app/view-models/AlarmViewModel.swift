@@ -9,28 +9,31 @@
 import Foundation
 
 
-typealias SleepTime = Double
+typealias SleepTime = Int
 
 class AlarmViewModel {
 
-    private(set) var state: Observable<String> = Observable<String>("") // get from model
-    private(set) var sleepTime: Observable<String> = Observable<String>("") // get from model
-    private(set) var alarmTime: Observable<String> = Observable<String>("") // get from model
-    private(set) var actionTitle: Observable<String> = Observable<String>("") // get from model
+    private(set) var state: Observable<String> = Observable<String>("")
+    private(set) var sleepTime: Observable<String> = Observable<String>("")
+    private(set) var alarmTime: Observable<String> = Observable<String>("")
+    private(set) var actionTitle: Observable<String> = Observable<String>("")
     
-    private(set) var sleepTimeValues: [SleepTime] = [0, 0.1, 1, 5, 10, 15, 20]
+    private(set) var sleepTimeValues: [SleepTime] = [0, 1, 5, 10, 15, 20]
     
     private var dateFormatter = DateFormatter()
     private var model: AlarmModel = AlarmModel()
     
     init() {
         dateFormatter.dateFormat = "hh:mm a"
+        
         model.state.bind({ [unowned self] state in
             
             var action = ""
             switch state {
-            case .idle, .sleepPaused, .recordingPaused:
+            case .idle, .sleepPaused, .alarm:
                 action = NSLocalizedString("Play", comment: "")
+            case .recordingPaused:
+                action = NSLocalizedString("Record", comment: "")
             default:
                 action = NSLocalizedString("Pause", comment: "")
             }
@@ -62,6 +65,7 @@ class AlarmViewModel {
         case .idle, .sleepPaused, .recordingPaused:
             model.start()
         case .alarm:
+            model.idle()
             break
         }
     }
@@ -75,5 +79,28 @@ extension SleepTime {
         }
         
         return self.description + " " + NSLocalizedString("min", comment: "")
+    }
+}
+
+extension AlarmModel.State {
+    func toString() -> String {
+        var value = ""
+        
+        switch self {
+        case .idle:
+            value = NSLocalizedString("Idle", comment: "")
+        case .playing:
+            value = NSLocalizedString("Playing", comment: "")
+        case .sleepPaused:
+            value = NSLocalizedString("Paused", comment: "")
+        case .recording:
+            value = NSLocalizedString("Recording", comment: "")
+        case .recordingPaused:
+            value = NSLocalizedString("Recording Paused", comment: "")
+        case .alarm:
+            value = NSLocalizedString("Alarm", comment: "")
+        }
+        
+        return value
     }
 }

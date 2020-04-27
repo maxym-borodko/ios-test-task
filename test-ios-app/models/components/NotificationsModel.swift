@@ -31,12 +31,8 @@ class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
         let content = UNMutableNotificationContent()
         content.title = "Alarm"
         
-        let comps = Calendar.current.dateComponents(in: Calendar.current.timeZone,
-                                                    from: alarmDateTime)
-        
-        let trigger = UNCalendarNotificationTrigger(dateMatching: comps,
-                                                     repeats: false)
-        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: alarmDateTime.timeIntervalSince(Date()),
+                                                        repeats: false)
         
         let uuidString = UUID().uuidString
         let request = UNNotificationRequest(identifier: uuidString,
@@ -45,12 +41,18 @@ class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
         
         notificationCenter.add(request) { (error) in
             if error != nil {
-                // Handle any errors.
             }
         }
+        
     }
     
     // MARK: - UNUserNotificationCenterDelegate
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        // handle
+    }
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

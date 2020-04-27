@@ -18,27 +18,6 @@ class AlarmModel: NSObject {
     
     enum State {
         case idle, playing, sleepPaused, recording, recordingPaused, alarm
-        
-        func toString() -> String {
-            var value = ""
-            
-            switch self {
-            case .idle:
-                value = NSLocalizedString("Idle", comment: "")
-            case .playing:
-                value = NSLocalizedString("Playing", comment: "")
-            case .sleepPaused:
-                value = NSLocalizedString("Paused", comment: "")
-            case .recording:
-                value = NSLocalizedString("Recording", comment: "")
-            case .recordingPaused:
-                value = NSLocalizedString("Recording Paused", comment: "")
-            case .alarm:
-                value = NSLocalizedString("Alarm", comment: "")
-            }
-            
-            return value
-        }
     }
     
     var sleepTime: TimeInterval = 0
@@ -60,8 +39,7 @@ class AlarmModel: NSObject {
                                                                     ofType: AlarmModel.soundFile.format)!)
         alarmDateTime = Calendar.current.date(byAdding: .hour,
                                               value: AlarmModel.hoursOffset,
-                                              to: Date(),
-                                              wrappingComponents: true)!
+                                              to: Date())!
         
         super.init()
         
@@ -72,6 +50,10 @@ class AlarmModel: NSObject {
     }
     
     //
+    func idle() {
+        state.value = .idle
+    }
+    
     func start() {
         switch state.value {
         case .idle, .alarm:

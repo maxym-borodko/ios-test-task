@@ -26,14 +26,19 @@ class SleepTimeModel {
     // MARK: - Public methods
     func runModelWith(sleepTime: TimeInterval,
                       completion: @escaping () -> Void) {
-        timer = Timer.scheduledTimer(withTimeInterval: sleepTime,
-                                     repeats: false,
-                                     block: { [unowned self] timer in
-                                        self.stopAudio()
-                                        completion()
-        })
-        
-        self.playAudio()
+        if sleepTime == 0 {
+            completion()
+        }
+        else {
+            timer = Timer.scheduledTimer(withTimeInterval: sleepTime,
+                                         repeats: false,
+                                         block: { [unowned self] timer in
+                                            self.stopAudio()
+                                            completion()
+            })
+            
+            self.playAudio()
+        }
     }
     
     func playAudio() {
