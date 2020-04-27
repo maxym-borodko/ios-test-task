@@ -11,6 +11,11 @@ import AVFoundation
 
 class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     
+    static let audioFormatString = "m4a"
+    
+    //
+    weak var errorHandler: ErrorHandler?
+    
     private(set) var nameSuffix: String
     private(set) var directory: URL
     
@@ -28,7 +33,8 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     
     // MARK: - Public methods
     func startRecording() {
-        let audioFilename = directory.appendingPathComponent(sessionsId.description + nameSuffix + ".m4a")
+        let audioFilename = directory.appendingPathComponent(sessionsId.description + nameSuffix + "." + RecordAudioModel.audioFormatString)
+        
         recordingSession = AVAudioSession.sharedInstance()
         
         do {
@@ -46,6 +52,9 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
             recorder?.record()
         }
         catch {
+            // The issues here usually occurs because of some problems with audio configs.
+            // Would be great to integare a logger to track such kinds of issues.
+            errorHandler?.handle(error: error)
         }
     }
     
@@ -54,9 +63,16 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     }
     
     func stopRecording() {
-        try? recordingSession?.setCategory(.playback)
+        do {
+            try recordingSession?.setCategory(.playback)
+        }
+        catch {
+            errorHandler?.handle(error: error)
+        }
+        
         recorder?.stop()
         recorder = nil
+        recordingSession = nil
     }
     
     // MARK: - AVAudioRecorderDelegate
@@ -66,6 +82,8 @@ class RecordAudioModel: NSObject, AVAudioRecorderDelegate {
     }
     
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-        
+        if let err = error {
+            errorHandler?.handle(error: err)
+        }
     }
 }

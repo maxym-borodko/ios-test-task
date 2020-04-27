@@ -16,6 +16,8 @@ class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
     
     var alarm: AlarmCompletion?
     
+    weak var errorHandler: ErrorHandler?
+    
     private var notificationCenter: UNUserNotificationCenter
     
     // MARK: - Initializers
@@ -39,8 +41,9 @@ class NotificationsModel: NSObject, UNUserNotificationCenterDelegate {
                                             content: content,
                                             trigger: trigger)
         
-        notificationCenter.add(request) { (error) in
-            if error != nil {
+        notificationCenter.add(request) { [unowned self] (error) in
+            if let err = error {
+                self.errorHandler?.handle(error: err)
             }
         }
         

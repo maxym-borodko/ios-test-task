@@ -10,6 +10,8 @@ import Foundation
 import AVFoundation
 import UIKit
 
+
+
 class AlarmModel: NSObject {
     
     static let recordsSuffix = "-record"
@@ -31,8 +33,8 @@ class AlarmModel: NSObject {
     
     //
     override init() {
+        //
         notificationsModel = NotificationsModel()
-        
         recordAudioModel = RecordAudioModel(nameSuffix: AlarmModel.recordsSuffix,
                                             directory: FileManager.default.documentsDirectory())
         sleepTimeModel = SleepTimeModel(audioPath: Bundle.main.path(forResource: AlarmModel.soundFile.name,
@@ -47,6 +49,11 @@ class AlarmModel: NSObject {
             self.state.value = .alarm
             self.recordAudioModel.stopRecording()
         }
+        
+        //
+        notificationsModel.errorHandler = self
+        recordAudioModel.errorHandler = self
+        sleepTimeModel.errorHandler = self
     }
     
     //
@@ -86,5 +93,16 @@ class AlarmModel: NSObject {
         default:
             break
         }
+    }
+}
+
+extension AlarmModel: ErrorHandler {
+    func handle(error: Error) {
+        // Error handlind strategy of the app needs to be developed with a product manager.
+        // Usually, different kinds of alerts, messages, tips or loggers are used in this situations.
+        //
+        // Now, for simple handling the app just prints the error :)
+        //
+        print("Error occured: \(error.localizedDescription)")
     }
 }
