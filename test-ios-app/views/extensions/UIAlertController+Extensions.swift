@@ -10,6 +10,7 @@ import UIKit
 
 typealias SleepTimeCompletion = (Int) -> Void
 typealias DatePickerCompletion = (Date) -> Void
+typealias AlarmWentOffCompletion = () -> Void
 
 extension UIAlertController {
     static let datePickerHeight: CGFloat = 280.0
@@ -69,5 +70,21 @@ extension UIAlertController {
         datePickerSheetController.view.addConstraint(heightConstraint)
         
         return datePickerSheetController
+    }
+    
+    class func alarmWentOffController(_ completion: @escaping AlarmWentOffCompletion) -> UIAlertController {
+        let alarmController = UIAlertController(title: nil,
+                                                message: NSLocalizedString("Alarm went off", comment: ""),
+                                                preferredStyle: .alert)
+        
+        let stopAction =
+            UIAlertAction(title: NSLocalizedString("Done", comment: ""),
+                          style: .default) { (action) in
+                            completion()
+        }
+        
+        alarmController.addAction(stopAction)
+        
+        return alarmController
     }
 }

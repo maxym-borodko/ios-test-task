@@ -10,6 +10,7 @@ import Foundation
 
 
 typealias SleepTime = Int
+typealias AlarmEventCompletion = () -> Void
 
 class AlarmViewModel {
 
@@ -17,6 +18,8 @@ class AlarmViewModel {
     private(set) var sleepTime: Observable<String> = Observable<String>("")
     private(set) var alarmTime: Observable<String> = Observable<String>("")
     private(set) var actionTitle: Observable<String> = Observable<String>("")
+    
+    var alarmEvent: AlarmEventCompletion? = nil
     
     private(set) var sleepTimeValues: [SleepTime] = [0, 1, 5, 10, 15, 20]
     
@@ -30,10 +33,13 @@ class AlarmViewModel {
             
             var action = ""
             switch state {
-            case .idle, .sleepPaused, .alarm:
+            case .idle, .sleepPaused:
                 action = NSLocalizedString("Play", comment: "")
             case .recordingPaused:
                 action = NSLocalizedString("Record", comment: "")
+            case .alarm:
+                action = NSLocalizedString("Play", comment: "")
+                self.alarmEvent?()
             default:
                 action = NSLocalizedString("Pause", comment: "")
             }

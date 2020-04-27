@@ -37,6 +37,10 @@ class AlarmViewController: UIViewController {
         viewModel.actionTitle.bind({ [unowned self] action in
             self.changeStateButton.setTitle(action, for: .normal)
         })
+        
+        viewModel.alarmEvent = { [unowned self] in
+            self.presentAlarmWentOff()
+        }
     }
     
     // MARK: - Actions
@@ -69,5 +73,14 @@ class AlarmViewController: UIViewController {
         }
         
         self.present(datePickerController, animated: true, completion: nil)
+    }
+    
+    private func presentAlarmWentOff() {
+        let alertController = UIAlertController.alarmWentOffController
+        { [unowned self] in
+            self.viewModel.changeState()
+        }
+        
+        self.present(alertController, animated: true, completion: nil)
     }
 }
