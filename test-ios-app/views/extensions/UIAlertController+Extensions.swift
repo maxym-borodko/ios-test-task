@@ -14,7 +14,7 @@ typealias DatePickerCompletion = (Date) -> Void
 extension UIAlertController {
     static let datePickerHeight: CGFloat = 280.0
     
-    class func sleepTimeSheetControllerWith(sleepTimes: [AlarmViewModel.SleepTime],
+    class func sleepTimeSheetControllerWith(sleepTimes: [SleepTime],
                                             completion: @escaping SleepTimeCompletion) -> UIAlertController {
         
         let sheetController = UIAlertController(title: nil,
@@ -41,6 +41,8 @@ extension UIAlertController {
     
     class func datePickerViewController(_ completion: @escaping DatePickerCompletion) -> UIAlertController {
         let datePicker = UIDatePicker()
+        datePicker.minimumDate = Date()
+        
         let datePickerSheetController = UIAlertController(title: nil,
                                                           message: nil,
                                                           preferredStyle: .actionSheet)
@@ -50,7 +52,7 @@ extension UIAlertController {
         let doneAction = UIAlertAction(title: NSLocalizedString("Done", comment: ""),
                                        style: .cancel,
                                        handler: { action in
-                                        
+                                        completion(datePicker.date)
         })
         
         datePickerSheetController.addAction(doneAction)

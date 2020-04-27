@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Observable<T> {
+class Observable<T> {
     typealias Observer = (T) -> Void
     
     private var observer: Observer?
@@ -22,7 +22,7 @@ struct Observable<T> {
         self.value = value
     }
     
-    mutating func bind(_ observer: Observer?) {
+    func bind(_ observer: Observer?) {
         self.observer = observer
         observer?(value)
     }

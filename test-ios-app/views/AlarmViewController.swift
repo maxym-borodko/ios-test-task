@@ -54,7 +54,7 @@ class AlarmViewController: UIViewController {
     
     //
     private func presentSleepTimes() {
-        let sheet = UIAlertController.sleepTimeSheetControllerWith(sleepTimes: [])
+        let sheet = UIAlertController.sleepTimeSheetControllerWith(sleepTimes: viewModel.sleepTimeValues)
         { [unowned self] (index) in
             self.viewModel.setSleepTimeAt(index: index)
         }

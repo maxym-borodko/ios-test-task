@@ -11,36 +11,59 @@ import Foundation
 
 typealias SleepTime = Int
 
-struct AlarmViewModel {
+class AlarmViewModel {
 
-    var state: Observable<String> = Observable<String>("Idle") // get from model
-    var sleepTime: Observable<String> = Observable<String>("20 mins") // get from model
-    var alarmTime: Observable<String> = Observable<String>("8:30 PM") // get from model
-    var actionTitle: Observable<String> = Observable<String>("Play") // get from model
+    private(set) var state: Observable<String> = Observable<String>("Idle") // get from model
+    private(set) var sleepTime: Observable<String> = Observable<String>("20 mins") // get from model
+    private(set) var alarmTime: Observable<String> = Observable<String>("8:30 PM") // get from model
+    private(set) var actionTitle: Observable<String> = Observable<String>("Play") // get from model
     
     private(set) var sleepTimeValues: [SleepTime] = [0, 1, 5, 10, 15, 20]
     
     private var dateFormatter = DateFormatter()
-//    private var model: Any?
+    private var model: AlarmModel = AlarmModel()
     
     init() {
         dateFormatter.dateFormat = "hh:mm a"
+        model.state.bind({ [unowned self] state in
+            
+            var action = ""
+            switch state {
+            case .idle, .sleepPaused, .recordingPaused:
+                action = NSLocalizedString("Play", comment: "")
+            default:
+                action = NSLocalizedString("Pause", comment: "")
+            }
+            
+            self.state.value = state.toString()
+            self.actionTitle.value = action
+        })
+        
+        setSleepTimeAt(index: 0)
+        setAlarm(dateTime: model.alarmDateTime)
     }
     
-    mutating func setSleepTimeAt(index: Int) {
+    func setSleepTimeAt(index: Int) {
         let value = sleepTimeValues[index]
         sleepTime.value = value.stringRepresantative()
         
-        // model.sleepTime = value
+        model.sleepTime = TimeInterval(value * 60)
     }
     
-    mutating func setAlarm(dateTime: Date) {
+    func setAlarm(dateTime: Date) {
         alarmTime.value = dateFormatter.string(from: dateTime)
-        // model.alarmDateTime = dateTime
+        model.alarmDateTime = dateTime
     }
     
     func changeState() {
-        // model.state = !model.state
+        switch model.state.value {
+        case .playing, .recording:
+            model.stop()
+        case .idle, .sleepPaused, .recordingPaused:
+            model.start()
+        case .alarm:
+            break
+        }
     }
 }
 
