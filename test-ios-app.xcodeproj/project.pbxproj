@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB6C4154245608DC004084B9 /* nature.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4152245608DB004084B9 /* nature.mp4 */; };
 		AB6C4155245608DC004084B9 /* alarm.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = AB6C4153245608DB004084B9 /* alarm.mp4 */; };
-		AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */; };
+		AB6C415824561FFF004084B9 /* EnablePermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415724561FFF004084B9 /* EnablePermissionsViewController.swift */; };
 		AB6C415E24562B5E004084B9 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C415D24562B5E004084B9 /* Observable.swift */; };
 		AB6C416124562BBB004084B9 /* AlarmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C416024562BBB004084B9 /* AlarmViewModel.swift */; };
 		AB6C416424563E65004084B9 /* UIAlertController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C416324563E65004084B9 /* UIAlertController+Extensions.swift */; };
@@ -20,6 +20,7 @@
 		AB6C417324564BA6004084B9 /* FileManager+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C417224564BA6004084B9 /* FileManager+Extensions.swift */; };
 		AB6C4178245744AE004084B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C4177245744AE004084B9 /* ErrorHandler.swift */; };
 		AB6C417A24576E38004084B9 /* AudioSessionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C417924576E37004084B9 /* AudioSessionModel.swift */; };
+		AB6C417C24579FA9004084B9 /* PermissionsUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6C417B24579FA9004084B9 /* PermissionsUtility.swift */; };
 		AB6D803F2455CFD200CB1248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D803E2455CFD200CB1248 /* AppDelegate.swift */; };
 		AB6D80412455CFD200CB1248 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80402455CFD200CB1248 /* SceneDelegate.swift */; };
 		AB6D80432455CFD200CB1248 /* AlarmViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6D80422455CFD200CB1248 /* AlarmViewController.swift */; };
@@ -42,7 +43,7 @@
 /* Begin PBXFileReference section */
 		AB6C4152245608DB004084B9 /* nature.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = nature.mp4; sourceTree = "<group>"; };
 		AB6C4153245608DB004084B9 /* alarm.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = alarm.mp4; sourceTree = "<group>"; };
-		AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnableNotificationViewController.swift; sourceTree = "<group>"; };
+		AB6C415724561FFF004084B9 /* EnablePermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnablePermissionsViewController.swift; sourceTree = "<group>"; };
 		AB6C415D24562B5E004084B9 /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		AB6C416024562BBB004084B9 /* AlarmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmViewModel.swift; sourceTree = "<group>"; };
 		AB6C416324563E65004084B9 /* UIAlertController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertController+Extensions.swift"; sourceTree = "<group>"; };
@@ -53,6 +54,7 @@
 		AB6C417224564BA6004084B9 /* FileManager+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extensions.swift"; sourceTree = "<group>"; };
 		AB6C4177245744AE004084B9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		AB6C417924576E37004084B9 /* AudioSessionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioSessionModel.swift; sourceTree = "<group>"; };
+		AB6C417B24579FA9004084B9 /* PermissionsUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsUtility.swift; sourceTree = "<group>"; };
 		AB6D803B2455CFD200CB1248 /* test-ios-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-ios-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB6D803E2455CFD200CB1248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AB6D80402455CFD200CB1248 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				AB6C415D24562B5E004084B9 /* Observable.swift */,
+				AB6C417B24579FA9004084B9 /* PermissionsUtility.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -194,7 +197,7 @@
 			children = (
 				AB6C416224563E56004084B9 /* extensions */,
 				AB6D80422455CFD200CB1248 /* AlarmViewController.swift */,
-				AB6C415724561FFF004084B9 /* EnableNotificationViewController.swift */,
+				AB6C415724561FFF004084B9 /* EnablePermissionsViewController.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -331,10 +334,11 @@
 				AB6C417324564BA6004084B9 /* FileManager+Extensions.swift in Sources */,
 				AB6C417024564928004084B9 /* SleepTimeModel.swift in Sources */,
 				AB6C415E24562B5E004084B9 /* Observable.swift in Sources */,
+				AB6C417C24579FA9004084B9 /* PermissionsUtility.swift in Sources */,
 				AB6C416424563E65004084B9 /* UIAlertController+Extensions.swift in Sources */,
 				AB6C416124562BBB004084B9 /* AlarmViewModel.swift in Sources */,
 				AB6C416C245648D2004084B9 /* NotificationsModel.swift in Sources */,
-				AB6C415824561FFF004084B9 /* EnableNotificationViewController.swift in Sources */,
+				AB6C415824561FFF004084B9 /* EnablePermissionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

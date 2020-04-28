@@ -1,5 +1,5 @@
 //
-//  EnableNotificationViewController.swift
+//  EnablePermissionsViewController.swift
 //  test-ios-app
 //
 //  Created by Maxym Borodko on 26.04.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EnableNotificationViewController: UIViewController {
+class EnablePermissionsViewController: UIViewController {
 
     // MARK: - Actions
     @IBAction func onOpenSettings() {

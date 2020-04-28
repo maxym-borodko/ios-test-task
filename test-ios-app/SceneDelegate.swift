@@ -7,58 +7,45 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     static let mainStoryboardName = "Main"
     static let enableNotificationViewControllerIdentifier = "EnableNotificationViewController"
     
-    var lastIsUNGranted: Bool!
     var window: UIWindow?
+    lazy var permissionsUtility: PermissionsUtility = {
+        let notificationCenter = UNUserNotificationCenter.current()
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        return PermissionsUtility(notificationCenter: notificationCenter,
+                                  audioSession: audioSession)
+    }()
     
     func scene(_ scene: UIScene,
                willConnectTo session: UISceneSession,
                options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        checkNotificationAuthorizationWith(windowScene: windowScene)
-    }
-    
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
-        
-        checkNotificationAuthorizationWith(windowScene: windowScene)
-    }
-    
-    func checkNotificationAuthorizationWith(windowScene: UIWindowScene) {
-        if let window = windowScene.windows.first {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound])
-            { (granted, error) in
-                
-                DispatchQueue.main.async { [unowned self] in
-                    if let lastIsUNGranted = self.lastIsUNGranted {
-                        if lastIsUNGranted != granted  {
-                            self.setRootViewControllerWith(window: window, isUNGranted: granted)
-                        }
-                    }
-                    else {
-                        if !granted {
-                            self.setRootViewControllerWith(window: window, isUNGranted: granted)
-                        }
-                    }
-
-                    self.lastIsUNGranted = granted
-                }
+        permissionsUtility.permissionsChanged = { [unowned self] (granted) in
+            print("permissions changed")
+            if let window = self.window {
+                self.setRootViewControllerWith(window: window,
+                                               isGranted: granted)
             }
         }
     }
     
-    func setRootViewControllerWith(window: UIWindow, isUNGranted: Bool) {
+    func sceneWillEnterForeground(_ scene: UIScene) {
+        permissionsUtility.checkPermissions()
+    }
+    
+    func setRootViewControllerWith(window: UIWindow, isGranted: Bool) {
         var rootViewController: UIViewController?
         let mainStoryboard = UIStoryboard(name: SceneDelegate.mainStoryboardName,
                                           bundle: nil)
         
-        if !isUNGranted {
+        if !isGranted {
             rootViewController = mainStoryboard.instantiateViewController(identifier: SceneDelegate.enableNotificationViewControllerIdentifier)
         }
         else {

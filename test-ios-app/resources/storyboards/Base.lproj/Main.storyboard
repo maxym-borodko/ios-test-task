@@ -173,22 +173,22 @@
             </objects>
             <point key="canvasLocation" x="52.173913043478265" y="375"/>
         </scene>
-        <!--Enable Notification View Controller-->
+        <!--Enable Permissions View Controller-->
         <scene sceneID="hD1-d8-XkP">
             <objects>
-                <viewController storyboardIdentifier="EnableNotificationViewController" id="Mpm-AU-zRY" customClass="EnableNotificationViewController" customModule="test_ios_app" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EnableNotificationViewController" id="Mpm-AU-zRY" customClass="EnablePermissionsViewController" customModule="test_ios_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Pg7-fm-joF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To continue work with the application, please, turn on Notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-Ie-AY6">
-                                <rect key="frame" x="48" y="432.5" width="319" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To continue work with the application, please, allow the app to use Notifications and Microphone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZKI-Ie-AY6">
+                                <rect key="frame" x="48" y="422.5" width="319" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q3E-9c-nDc">
-                                <rect key="frame" x="20" y="516" width="374" height="64"/>
+                                <rect key="frame" x="20" y="526" width="374" height="64"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="8ve-nq-faN"/>

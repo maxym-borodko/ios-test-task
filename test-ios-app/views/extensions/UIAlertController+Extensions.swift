@@ -14,6 +14,7 @@ typealias AlarmWentOffCompletion = () -> Void
 
 extension UIAlertController {
     static let datePickerHeight: CGFloat = 280.0
+    static let addingMinutesToCurrentDate = 20
     
     class func sleepTimeSheetControllerWith(sleepTimes: [SleepTime],
                                             completion: @escaping SleepTimeCompletion) -> UIAlertController {
@@ -42,7 +43,10 @@ extension UIAlertController {
     
     class func datePickerViewController(_ completion: @escaping DatePickerCompletion) -> UIAlertController {
         let datePicker = UIDatePicker()
-        datePicker.minimumDate = Date()
+        let minutes = UIAlertController.addingMinutesToCurrentDate
+        datePicker.minimumDate = Calendar.current.date(byAdding: .minute,
+                                                       value: minutes,
+                                                       to: Date())
         
         let datePickerSheetController = UIAlertController(title: nil,
                                                           message: nil,
