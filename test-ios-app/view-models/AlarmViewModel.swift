@@ -9,7 +9,7 @@
 import Foundation
 
 
-typealias SleepTime = Int
+typealias SleepTime = Double
 typealias AlarmEventCompletion = () -> Void
 
 class AlarmViewModel {
@@ -22,7 +22,7 @@ class AlarmViewModel {
     
     var alarmEvent: AlarmEventCompletion? = nil
     
-    private(set) var sleepTimeValues: [SleepTime] = [0, 1, 5, 10, 15, 20]
+    private(set) var sleepTimeValues: [SleepTime] = [0, 0.5, 1, 5, 10, 15, 20]
     
     private var dateFormatter = DateFormatter()
     private var model: AlarmModel = AlarmModel()

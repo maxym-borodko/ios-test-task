@@ -15,7 +15,8 @@ import UIKit
 class AlarmModel: NSObject {
     
     static let recordsSuffix = "-record"
-    static let soundFile = (name: "nature", format: "mp4")
+    static let natureSoundFile = (name: "nature", format: "mp4")
+    static let alarmSoundFile = (name: "alarm", format: "mp4")
     static let hoursOffset = 6
     
     enum State {
@@ -30,15 +31,24 @@ class AlarmModel: NSObject {
     private var notificationsModel: NotificationsModel
     private var sleepTimeModel: SleepTimeModel
     private var recordAudioModel: RecordAudioModel
+    private var alarmAudioModel: AudioModel
     
     //
     override init() {
         //
         notificationsModel = NotificationsModel()
-        sleepTimeModel = SleepTimeModel(audioPath: Bundle.main.path(forResource: AlarmModel.soundFile.name,
-                                                                    ofType: AlarmModel.soundFile.format)!)
-        recordAudioModel = RecordAudioModel(nameSuffix: AlarmModel.recordsSuffix,
-                                            directory: FileManager.default.documentsDirectory())
+        
+        sleepTimeModel =
+            SleepTimeModel(audioPath: Bundle.main.path(forResource: AlarmModel.natureSoundFile.name,
+                                                       ofType: AlarmModel.natureSoundFile.format)!)
+        
+        recordAudioModel =
+            RecordAudioModel(nameSuffix: AlarmModel.recordsSuffix,
+                             directory: FileManager.default.documentsDirectory())
+        alarmAudioModel =
+            AudioModel(audioPath: Bundle.main.path(forResource: AlarmModel.alarmSoundFile.name,
+                                                   ofType: AlarmModel.alarmSoundFile.format)!)
+        
         alarmDateTime = Calendar.current.date(byAdding: .hour,
                                               value: AlarmModel.hoursOffset,
                                               to: Date())!
@@ -51,11 +61,13 @@ class AlarmModel: NSObject {
     //
     func idle() {
         state.value = .idle
+        self.alarmAudioModel.stopAudio()
     }
     
     func start() {
         switch state.value {
         case .idle, .alarm:
+            alarmAudioModel.stopAudio()
             notificationsModel.registerAlarmWith(alarmDateTime: alarmDateTime)
             sleepTimeModel.runModelWith(sleepTime: sleepTime)
             { [unowned self] in
@@ -65,8 +77,7 @@ class AlarmModel: NSObject {
             recordAudioModel.startRecording()
         case .sleepPaused:
             sleepTimeModel.playAudio()
-        default:
-            break
+        default: ()
         }
     }
     
@@ -76,8 +87,7 @@ class AlarmModel: NSObject {
             sleepTimeModel.pauseAudio()
         case .recording:
             recordAudioModel.pauseRecording()
-        default:
-            break
+        default: ()
         }
     }
     
@@ -91,7 +101,11 @@ class AlarmModel: NSObject {
         
         //
         notificationsModel.alarm = { [unowned self] in
+            self.sleepTimeModel.stopAudio()
             self.recordAudioModel.stopRecording()
+            
+            self.alarmAudioModel.playAudio()
+            
             self.state.value = .alarm
         }
         
